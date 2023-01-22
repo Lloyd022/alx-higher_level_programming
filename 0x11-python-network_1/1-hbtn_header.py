@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-# Task 1. Response header value #0
-from sys import argv
+# Python script that takes in a URL sends a request to the URL
+import sys
 import urllib.request
+
 if __name__ == "__main__":
-    with urllib.request.urlopen(argv[1]) as response:
-        html = response.info()
-        print('{}'.format(html.get('X-Request-Id')))
+    with urllib.request.urlopen(sys.argv[1]) as res:
+        print(res.info()['X-Request-Id'])
