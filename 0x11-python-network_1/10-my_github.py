@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-# Task 8. Search API
-if __name__ == "__main__":
-    import sys
-    import requests
-    the_url = "https://api.github.com/user"
-    my_user = sys.argv[1]
-    my_pass = sys.argv[2]
-    my_requ = requests.get(the_url, auth=(my_user, my_pass))
-    the_resp = my_requ.json()
-    print("{}".format(the_resp.get("id")))
+"""
+Python script takes your Github credentials (username and password)
+and uses the Github API to display your id
+"""
+import requests
+from requests.auth import HTTPBasicAuth
+from sys import argv
+
+if __name__ == '__main__':
+    url = 'https://api.github.com/users/{}'.format(argv[1])
+    r = requests.get(url,
+                     auth=HTTPBasicAuth(argv[1], argv[2]))
+    print(r.json().get('id'))
